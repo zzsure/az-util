@@ -1,0 +1,38 @@
+settings:
+  legacy:
+    force: false
+    interval: 0s
+schema:
+  - name: az-util
+    path: .
+    env:
+      ARG: server
+    commands:
+      install:
+        status: true
+        method: go build -o ./az-util -mod=vendor
+      run:
+        status: true
+        method: ./az-util
+        args:
+          - server
+    args:
+      - server
+      - --conf=./run/config.toml
+    watcher:
+      extensions:
+        - go
+        - toml
+      paths:
+        - /
+      ignore:
+        paths:
+          - .git
+          - .realize
+          - vendor
+          - static
+          - test
+          - log
+          - asset
+          - redis
+          - doc

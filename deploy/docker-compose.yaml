@@ -1,0 +1,15 @@
+version: "3.3"
+services:
+  az-util:
+    image: zzsure/az-util:1.0.0
+    container_name: az-util-${USER}
+    network_mode: "host"
+    working_dir: /root/deploy/az-util
+    volumes:
+      - "/root/deploy/az-util/config.toml:/root/deploy/az-util/config.toml"
+    restart: always
+    entrypoint:
+      - /root/deploy/az-util/az-util
+      - server
+      - -c
+      - /root/deploy/az-util/config.toml
